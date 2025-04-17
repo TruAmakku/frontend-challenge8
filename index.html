@@ -1,36 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
+    <style>
+      html {
+        font-family: 'Manrope';
+        background-color: hsl(210, 46%, 95%);
+        font-size: 13px;
+      }
+      #sharebar::before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        text-align: center;
+        transform: translate(-50%);
+        border: 12px solid;
+        border-top-color: hsl(217, 19%, 35%);
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+        border-left-color: transparent;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const shareBtn = document.getElementById('sharebtn');
+        const shareBar = document.getElementById('sharebar');
+        let activity = true;
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Article preview component</title>
+        // Share button click event
+        shareBtn.addEventListener('click', (event) => {
+          event.stopPropagation();
+          activity = !activity;
+          console.log(activity);
+          if (activity) {
+            shareBar.classList.add('hidden');
+            shareBtn.classList.remove('bg-[hsl(217,19%,35%)]!');
+          } else {
+            shareBar.classList.remove('hidden');
+            shareBtn.classList.add('bg-[hsl(217,19%,35%)]!');
+          }
+        });
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-
-  Shift the overall look and feel by adding these wonderful 
-  touches to furniture in your home
-
-  Ever been in a room and felt like something was missing? Perhaps 
-  it felt slightly bare and uninviting. I’ve got some simple tips 
-  to help you make any room feel complete.
-
-  Michelle Appleton
-  28 Jun 2020
-
-  Share
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+        document.addEventListener('click', () => {
+          if (!activity) {
+            activity = true;
+            shareBar.classList.add('hidden');
+            shareBtn.classList.remove('bg-[hsl(217,19%,35%)]!');
+          }
+        });
+      });
+    </script>
+  </head>
+  <body class="flex justify-center items-center h-screen overflow-hidden">
+    <main class="flex max-md:flex-col mx-6 max-w-[275px] sm:max-w-[350px] md:max-w-[700px] bg-white rounded-xl">
+      <img
+        src="./images/drawers.jpg"
+        alt="drawers"
+        class="md:w-80 max-md:h-80 max-md:rounded-t-xl md:rounded-l-xl object-cover"
+      />
+      <div class="p-7">
+        <h1 class="font-[700] text-xl md:text-2xl text-[hsl(217,19%,35%)] mb-4">
+          Shift the overall look and feel by adding these wonderful touches to furniture in your home
+        </h1>
+        <p class="font-[400] text-[hsl(214,17%,51%)]">
+          Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I’ve
+          got some simple tips to help you make any room feel complete.
+        </p>
+        <section class="flex items-center justify-between mt-8">
+          <div class="flex items-center gap-3">
+            <img src="./images/avatar-michelle.jpg" alt="michelle" class="w-14 h-14 rounded-full" />
+            <div>
+              <p class="font-[700] text-md md:text-lg text-[hsl(217,19%,35%)]">Michelle Appleton</p>
+              <p class="text-[hsl(214,17%,59%)] max-md:text-sm">28 Jun 2020</p>
+            </div>
+          </div>
+          <div class="relative">
+            <img
+              src="./images/icon-share.svg"
+              alt="share"
+              id="sharebtn"
+              class="w-12 bg-gray-100 p-3 rounded-full hover:bg-gray-300 active:bg-gray-200 hover:cursor-pointer"
+            />
+            <div
+              id="sharebar"
+              class="flex gap-4 items-center bg-[hsl(217,19%,35%)] text-white py-4 px-1 rounded-2xl absolute left-[-72px] bottom-16 w-[180px] hidden"
+            >
+              <p class="tracking-[4px] ml-2">SHARE</p>
+              <img src="./images/icon-facebook.svg" alt="facebook" />
+              <img src="/images/icon-pinterest.svg" alt="pintrest" />
+              <img src="./images/icon-twitter.svg" alt="twitter" />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>
