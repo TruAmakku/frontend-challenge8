@@ -11,24 +11,27 @@
         background-color: hsl(210, 46%, 95%);
         font-size: 13px;
       }
-      #sharebar::before {
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        text-align: center;
-        transform: translate(-50%);
-        border: 12px solid;
-        border-top-color: hsl(217, 19%, 35%);
-        border-bottom-color: transparent;
-        border-right-color: transparent;
-        border-left-color: transparent;
+      @media only screen and (min-width: 768px) {
+        #sharebar::before {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          text-align: center;
+          transform: translate(-50%);
+          border: 12px solid;
+          border-top-color: hsl(217, 19%, 35%);
+          border-bottom-color: transparent;
+          border-right-color: transparent;
+          border-left-color: transparent;
+        }
       }
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const shareBtn = document.getElementById('sharebtn');
         const shareBar = document.getElementById('sharebar');
+        const michelle = document.getElementById('michelle');
         let activity = true;
 
         // Share button click event
@@ -38,10 +41,14 @@
           console.log(activity);
           if (activity) {
             shareBar.classList.add('hidden');
-            shareBtn.classList.remove('bg-[hsl(217,19%,35%)]!');
+            shareBtn.classList.remove('bg-[hsl(217,19%,40%)]!');
+            shareBtn.classList.remove('max-md:top-1/2', 'max-md:-translate-y-1/2');
+            michelle.classList.remove('max-md:hidden');
           } else {
             shareBar.classList.remove('hidden');
-            shareBtn.classList.add('bg-[hsl(217,19%,35%)]!');
+            shareBtn.classList.add('bg-[hsl(217,19%,40%)]!');
+            shareBtn.classList.add('max-md:top-1/2', 'max-md:-translate-y-1/2');
+            michelle.classList.add('max-md:hidden');
           }
         });
 
@@ -49,7 +56,9 @@
           if (!activity) {
             activity = true;
             shareBar.classList.add('hidden');
-            shareBtn.classList.remove('bg-[hsl(217,19%,35%)]!');
+            shareBtn.classList.remove('bg-[hsl(217,19%,40%)]!');
+            shareBtn.classList.remove('max-md:top-1/2', 'max-md:-translate-y-1/2');
+            michelle.classList.remove('max-md:hidden');
           }
         });
       });
@@ -60,34 +69,34 @@
       <img
         src="./images/drawers.jpg"
         alt="drawers"
-        class="md:w-80 max-md:h-80 max-md:rounded-t-xl md:rounded-l-xl object-cover"
+        class="md:w-80 max-md:h-80 max-md:rounded-t-xl md:rounded-l-xl object-fit"
       />
-      <div class="p-7">
-        <h1 class="font-[700] text-xl md:text-2xl text-[hsl(217,19%,35%)] mb-4">
+      <div class="md:p-7">
+        <h1 class="font-[700] text-xl md:text-2xl text-[hsl(217,19%,35%)] mb-4 max-md:px-7 max-md:pt-7">
           Shift the overall look and feel by adding these wonderful touches to furniture in your home
         </h1>
-        <p class="font-[400] text-[hsl(214,17%,51%)]">
+        <p class="font-[400] text-[hsl(214,17%,51%)] max-md:px-7 max-md:pb-7">
           Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I’ve
           got some simple tips to help you make any room feel complete.
         </p>
-        <section class="flex items-center justify-between mt-8">
-          <div class="flex items-center gap-3">
+        <section class="md:flex md:items-center md:justify-between md:mt-8">
+          <div id="michelle" class="flex items-center gap-3 max-md:p-4">
             <img src="./images/avatar-michelle.jpg" alt="michelle" class="w-14 h-14 rounded-full" />
             <div>
               <p class="font-[700] text-md md:text-lg text-[hsl(217,19%,35%)]">Michelle Appleton</p>
               <p class="text-[hsl(214,17%,59%)] max-md:text-sm">28 Jun 2020</p>
             </div>
           </div>
-          <div class="relative">
+          <div class="relative max-md:w-full">
             <img
               src="./images/icon-share.svg"
               alt="share"
               id="sharebtn"
-              class="w-12 bg-gray-100 p-3 rounded-full hover:bg-gray-300 active:bg-gray-200 hover:cursor-pointer"
+              class="w-12 bg-gray-100 p-3 rounded-full hover:bg-gray-300 active:bg-gray-200 hover:cursor-pointer max-md:absolute max-md:right-4 max-md:bottom-4"
             />
             <div
               id="sharebar"
-              class="flex gap-4 items-center bg-[hsl(217,19%,35%)] text-white py-4 px-1 rounded-2xl absolute left-[-72px] bottom-16 w-[180px] hidden"
+              class="flex gap-4 items-center bg-[hsl(217,19%,35%)] text-white md:py-4 md:px-1 md:rounded-2xl md:absolute md:left-[-72px] md:bottom-16 md:w-[180px] p-7 rounded-b-2xl hidden"
             >
               <p class="tracking-[4px] ml-2">SHARE</p>
               <img src="./images/icon-facebook.svg" alt="facebook" />
